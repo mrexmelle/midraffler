@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F6F76F392721F39DF800AF1D81C1174DE4A4C356",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4CB66ECAE72DB0E9C0976B23C3487651D048074D" : 9223372036854775807,
+    "F6F76F392721F39DF800AF1D81C1174DE4A4C356" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "92D52899-30E1-4586-A00B-31B6AAEE2B43",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4CB66ECAE72DB0E9C0976B23C3487651D048074D" : "..\/..",
+    "F6F76F392721F39DF800AF1D81C1174DE4A4C356" : "midraffler\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "midraffler",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "midraffler.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.heroku.com\/rocky-depths-45510.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4CB66ECAE72DB0E9C0976B23C3487651D048074D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrexmelle\/midraffler",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F6F76F392721F39DF800AF1D81C1174DE4A4C356"
+    }
+  ]
+}
