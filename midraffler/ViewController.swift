@@ -15,13 +15,17 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var midTextField: NSTextField!
     
-    
     @IBAction func onStartClick(_ sender: NSButton)
     {
         isStarted = true;
         print("Start? " + String(isStarted));
-//        midTextField.stringValue = String(isStarted);
-        midTextField.stringValue = randomMid();
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            
+            DispatchQueue.main.async {
+                print("This is run on the main queue, after the previous code in outer block")
+            }
+        }
     }
     
     @IBAction func onEndClick(_ sender: NSButton)
@@ -34,29 +38,6 @@ class ViewController: NSViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-//        if let fp = Bundle.main.path(forResource: "data/test", ofType: "txt")
-//        {
-//            do
-//            {
-//                let ctt=try String(contentsOfFile: fp)
-//                let lines=ctt.components(separatedBy: "\n");
-//                for line in lines
-//                {
-//                    print("line: " + line);
-//                }
-//            }
-//            catch
-//            {
-//                print("cannot load content");
-//            }
-//        }
-//        else
-//        {
-//            print("data/test not found");
-//        }
 
         if CommandLine.argc > 1
         {
@@ -96,7 +77,7 @@ class ViewController: NSViewController {
         
         var mid="u";
         
-        for _ in 0 ..< 30
+        for _ in 0 ..< 32
         {
             let rand = Int(arc4random_uniform(UInt32(len)));
             let idx = seeds.index(seeds.startIndex, offsetBy: rand);
@@ -106,6 +87,18 @@ class ViewController: NSViewController {
         
         return mid;
     }
-
+    
+    /*
+    override func viewDidAppear() {
+        while true{
+            let delay = Int(1 * Double(1000))
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(delay)) {
+                self.midTextField.stringValue = self.randomMid();
+                print ("*")
+            }
+        }
+    }
+    */
 }
+
 

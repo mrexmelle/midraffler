@@ -190,7 +190,7 @@
 				TargetAttributes = {
 					3C370CD21E6EE360001681B1 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = UYHE8D7YFQ;
+						DevelopmentTeam = UEP53VD5H2;
 						ProvisioningStyle = Automatic;
 					};
 					3C370CE31E6EE360001681B1 = {
@@ -402,9 +402,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYHE8D7YFQ;
+				DEVELOPMENT_TEAM = UEP53VD5H2;
 				INFOPLIST_FILE = midraffler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.linecorp.midraffler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -417,9 +418,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYHE8D7YFQ;
+				DEVELOPMENT_TEAM = UEP53VD5H2;
 				INFOPLIST_FILE = midraffler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.linecorp.midraffler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -507,6 +509,7 @@
 				3C370CFA1E6EE361001681B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C370CFB1E6EE361001681B1 /* Build configuration list for PBXNativeTarget "midrafflerTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +518,7 @@
 				3C370CFD1E6EE361001681B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C370CFE1E6EE361001681B1 /* Build configuration list for PBXNativeTarget "midrafflerUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +527,7 @@
 				3C370D001E6EE361001681B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
