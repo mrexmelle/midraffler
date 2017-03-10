@@ -12,6 +12,7 @@ class ViewController: NSViewController {
 
     var isStarted: Bool=false;
     var fileName: String?;
+    
 
     @IBOutlet weak var midTextField: NSTextField!
     
@@ -48,8 +49,20 @@ class ViewController: NSViewController {
             fileName=""
         }
         let fm = FileManager.default;
+        
+        //Check file exist or not
+        if fm.fileExists(atPath: "/Users/line/Desktop/testAccesstoken.txt") {
+            print("File exists")
+        } else {
+            print("File not found")
+        }
+        
+        let databuffer = fm.contents(atPath: fileName!)
+        let data = String(data: databuffer!, encoding: .utf8)
+        print("Data: " + data!)
+        
         print("PWD: " + fm.currentDirectoryPath);
-        midTextField.stringValue=fileName!;
+        midTextField.stringValue=data!;
     }
 
     override var representedObject: Any?
