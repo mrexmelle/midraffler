@@ -10,30 +10,27 @@ import Cocoa
 
 class ViewController: NSViewController {
 
-    var isStarted: Bool=false;
-    var fileName: String?;
+    var pathString: String?
+    let fm = FileManager.default
+    var myTimer = Timer()
+    var midResult: String = ""
     
 
     @IBOutlet weak var midTextField: NSTextField!
     
     @IBAction func onStartClick(_ sender: NSButton)
     {
-        isStarted = true;
-        print("Start? " + String(isStarted));
-        DispatchQueue.global(qos: .background).async {
-            print("This is run on the background queue")
-            
-            DispatchQueue.main.async {
-                print("This is run on the main queue, after the previous code in outer block")
-            }
-        }
+        print("Start")
+        midResult = getMidFromFiles()
+        runCountdown()
     }
     
     @IBAction func onEndClick(_ sender: NSButton)
     {
-        isStarted = false;
-        print("Start? " + String(isStarted));
-        midTextField.stringValue = String(isStarted);
+        print("Stop")
+        myTimer.invalidate()
+        midTextField.stringValue = midResult
+        
     }
     
     override func viewDidLoad()
@@ -42,49 +39,49 @@ class ViewController: NSViewController {
 
         if CommandLine.argc > 1
         {
-            fileName=CommandLine.arguments[1];
+            pathString=CommandLine.arguments[1];
         }
         else
         {
-            fileName=""
+            pathString=""
         }
-        let fm = FileManager.default;
-        
-        //Check file exist or not
-        if fm.fileExists(atPath: "/Users/line/Desktop/testAccesstoken.txt") {
-            print("File exists")
-        } else {
-            print("File not found")
-        }
-        
-        let databuffer = fm.contents(atPath: fileName!)
-        let data = String(data: databuffer!, encoding: .utf8)
-        print("Data: " + data!)
-        
-        print("PWD: " + fm.currentDirectoryPath);
-        midTextField.stringValue=data!;
-    }
-
-    override var representedObject: Any?
-    {
-        didSet
-        {
-        // Update the view, if already loaded.
-        }
-    }
-
-    override func mouseDown(with event: NSEvent)
-    {
-//      let pt : NSPoint=event.locationInWindow;
-//      print("clicked at: " +  String(describing: pt.x) + "," + String(describing: pt.y));
-
-//        isStarted = !isStarted;
-//        print("Start? " + String(isStarted));
-//        midTextField.stringValue = String(isStarted);
     }
     
-    func randomMid() -> String
-    {
+    func getMidFromFiles() -> String {
+        
+        do {
+            let nFiles:Int = try fm.contentsOfDirectory(atPath: pathString!).filter{ $0.hasPrefix("test") }.count
+            let randomFileNum:UInt32 = arc4random_uniform(UInt32(nFiles))
+            let randomFile:Int = Int(randomFileNum) + 1
+            
+            let filePath:String = pathString! + "/test-" + String(randomFile) + ".txt"
+            
+            //Check file exist or not
+            if fm.fileExists(atPath: filePath) {
+                print("File exists")
+            } else {
+                print("File not found")
+            }
+            
+            let databuffer = fm.contents(atPath: filePath)
+            let data = String(data: databuffer!, encoding: .utf8)
+            var myStrings = data?.components(separatedBy: "\n")
+            let randomIndexNum:UInt32 = arc4random_uniform(UInt32(myStrings!.count))
+            let randomIndex:Int = Int(randomIndexNum)
+            print("Data: " + (myStrings?[randomIndex])!)
+            
+            return (myStrings?[randomIndex])!
+        } catch {
+            print(error)
+            return " "
+        }
+    }
+    
+    func runCountdown() {
+        myTimer = Timer.scheduledTimer(timeInterval: 0.125, target: self, selector:#selector(ViewController.randomMid), userInfo: nil, repeats: true)
+    }
+    
+    func randomMid() {
         let seeds : String = "qwertyuiopasdfghjklzxcvbnm1234567890";
         let len = seeds.characters.count;
         
@@ -98,20 +95,8 @@ class ViewController: NSViewController {
             mid += String(nextChar);
         }
         
-        return mid;
+        midTextField.stringValue = "\(mid)"
     }
-    
-    /*
-    override func viewDidAppear() {
-        while true{
-            let delay = Int(1 * Double(1000))
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(delay)) {
-                self.midTextField.stringValue = self.randomMid();
-                print ("*")
-            }
-        }
-    }
-    */
 }
 
 
