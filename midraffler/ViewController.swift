@@ -10,6 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    var isStarted = false
     var pathString: String?
     let fm = FileManager.default
     var myTimer = Timer()
@@ -22,13 +23,16 @@ class ViewController: NSViewController {
     {
         print("Start")
         midResult = getMidFromFiles()
-        runCountdown()
+        if isStarted == false {
+            runCountdown()
+        }
     }
     
     @IBAction func onEndClick(_ sender: NSButton)
     {
         print("Stop")
         myTimer.invalidate()
+        isStarted = false
         midTextField.stringValue = midResult
         
     }
@@ -78,6 +82,7 @@ class ViewController: NSViewController {
     }
     
     func runCountdown() {
+        isStarted = true
         myTimer = Timer.scheduledTimer(timeInterval: 0.125, target: self, selector:#selector(ViewController.randomMid), userInfo: nil, repeats: true)
     }
     
