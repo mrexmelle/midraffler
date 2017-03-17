@@ -34,6 +34,14 @@ class ViewController: NSViewController {
         midTextField.addGestureRecognizer(gesture)
     }
     
+    override func viewDidAppear() {
+        let presOpt: NSApplicationPresentationOptions = ([.autoHideDock,.autoHideMenuBar])
+        let optDict = [NSFullScreenModeApplicationPresentationOptions : NSNumber(value: presOpt.rawValue)]
+        
+        self.view.enterFullScreenMode(NSScreen.main()!, withOptions: optDict)
+        self.view.wantsLayer = true
+    }
+    
     @IBAction func onStartClick(_ sender: NSButton)
     {
         print("onStartClick - start")
@@ -83,49 +91,50 @@ class ViewController: NSViewController {
     {
         print("getMidFromFiles - start")
     
-        // pick a random file
-        let randomFile:Int = randomNumber(n: fileCount) + 1
-            
-        let filePath:String = baseDir! + "/testing-" + String(randomFile) + ".csv"
-        print(filePath)
-            
-        // check file exist or not
-        if fileMgr.fileExists(atPath: filePath)
-        {
-            print("getMidFromFiles - \(filePath) exists")
-        }
-        else
-        {
-            print("getMidFromFiles - \(filePath) does not exist")
-            return " "
-        }
-        
-        // count lines in the random file
-        print("getMidFromFiles - start counting lines")
-        let databuffer = fileMgr.contents(atPath: filePath)
-        let data = String(data: databuffer!, encoding: .utf8)
-        var myStrings = data?.components(separatedBy: .newlines)
-        print("getMidFromFiles - counting lines ended")
-        print("nLines: " + String((myStrings!.count)))
-        
-        var randomIndex: Int = 0
-        
         print(resArray)
+        var tempRes: String = " "
+        
         // repeat pick random line until line does not exist in array
         repeat
         {
+            // pick a random file
+            let randomFile:Int = randomNumber(n: fileCount) + 1
+            
+            let filePath:String = baseDir! + "/testing-" + String(randomFile) + ".csv"
+            print(filePath)
+            
+            // check file exist or not
+            if fileMgr.fileExists(atPath: filePath)
+            {
+                print("getMidFromFiles - \(filePath) exists")
+            }
+            else
+            {
+                print("getMidFromFiles - \(filePath) does not exist")
+                return " "
+            }
+            
+            // count lines in the random file
+            print("getMidFromFiles - start counting lines")
+            let databuffer = fileMgr.contents(atPath: filePath)
+            let data = String(data: databuffer!, encoding: .utf8)
+            var myStrings = data?.components(separatedBy: .newlines)
+            print("getMidFromFiles - counting lines ended")
+            print("nLines: " + String((myStrings!.count)))
+            
             // Pick a random line
-            randomIndex = randomNumber(n: (myStrings!.count))
+            let randomIndex = randomNumber(n: (myStrings!.count))
             print("Pick one random number for lines")
-            print("Data: " + (myStrings?[randomIndex])!)
+            tempRes = (myStrings?[randomIndex])!
+            print("Data: " + tempRes)
         }
-        while resArray.contains((myStrings?[randomIndex])!)
+        while resArray.contains(tempRes)
         
-        resArray.append((myStrings?[randomIndex])!)
+        resArray.append(tempRes)
         print("getMidFromFiles - regsitered mid: \(resArray.last)")
         
         // parse line to be a result
-        let results = (myStrings?[randomIndex])!.components(separatedBy: ",")
+        let results = tempRes.components(separatedBy: ",")
         let resultString = results[0]
         userDetail = ""
         for data in results
