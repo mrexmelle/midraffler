@@ -33,13 +33,13 @@ class AppDelegate: NSObject, NSApplicationDelegate
             {
                 csvDir=result!.path
                 print("onOpenClicked - Directory chosen: " + csvDir!)
+                vc!.loadBaseDir(dir: csvDir!)
             }
             else
             {
                 csvDir=""
                 print("onOpenClicked - Empty directory selected")
-            }
-            vc!.loadBaseDir(dir: csvDir!)
+            }            
         }
         else
         {
