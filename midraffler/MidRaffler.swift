@@ -95,7 +95,8 @@ class MidRaffler
         }
         
         // parse line to be a result
-        let results = tempRes.components(separatedBy: ",")
+        let results = (tempRes+",uname").components(separatedBy: ",")
+//        let results = tempRes.components(separatedBy: ",")
         print("MidRaffler::draw - result - mid: " + results[0])
         print("MidRaffler::draw - result - username: " + results[1])
         return LineUser(mid: results[0], username: results[1])

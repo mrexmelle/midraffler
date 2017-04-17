@@ -39,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             {
                 csvDir=""
                 print("onOpenClicked - Empty directory selected")
-            }            
+            }
         }
         else
         {
