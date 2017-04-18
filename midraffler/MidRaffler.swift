@@ -10,7 +10,7 @@ import Cocoa
 
 class MidRaffler
 {
-    private static let FILE_PREFIX = "midlist-"
+    private static let FILE_PREFIX = "mid3april_"
     private let fileMgr = FileManager.default
     private let baseDir : String
     private let resFile : String
@@ -39,10 +39,6 @@ class MidRaffler
                 let resultData = String(data: resFileBuffer!, encoding: .utf8)
                 resArray = (resultData?.components(separatedBy: .newlines))!
             }
-            else
-            {
-                fileMgr.createFile(atPath: resFile, contents: Data())
-            }
         }
         catch
         {
@@ -55,7 +51,7 @@ class MidRaffler
     // pick random MID from Files
     public func draw() -> LineUser
     {
-        var tempRes: String = " "
+        var tempRes: String = "abcde"
         
         // repeat pick random line until line does not exist in array
         repeat
@@ -79,6 +75,7 @@ class MidRaffler
             
                 // pick a random line
                 let randomIndex = Randomiser.newInt(n: (myStrings!.count))
+                print("MidRaffler::draw - random index: " + String(randomIndex))
                 tempRes = (myStrings?[randomIndex])!
                 print("MidRaffler::draw - data: " + tempRes)
             }
