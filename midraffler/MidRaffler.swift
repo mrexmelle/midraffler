@@ -10,7 +10,7 @@ import Cocoa
 
 class MidRaffler
 {
-    private static let FILE_PREFIX = "mid3april_"
+    private static let FILE_PREFIX = "ltb_"
     private let fileMgr = FileManager.default
     private let baseDir : String
     private let resFile : String
@@ -70,7 +70,7 @@ class MidRaffler
                 // count lines in the random file
                 let databuffer = fileMgr.contents(atPath: filePath)
                 let data = String(data: databuffer!, encoding: .utf8)
-                var myStrings = data?.components(separatedBy: .newlines)
+                var myStrings = data?.components(separatedBy: "\r\n")
                 print("MidRaffler::draw - number of lines: " + String((myStrings!.count)))
             
                 // pick a random line
@@ -87,6 +87,7 @@ class MidRaffler
         // only append if array count is smaller than fileCount and 250
         if(resArray.count <= 250)
         {
+            print("MidRaffler::draw - adding: \(tempRes)")
             resArray.append(tempRes)
             print("MidRaffler::draw - regsitered mid: \(resArray.last)")
         }
